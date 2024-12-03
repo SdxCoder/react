@@ -1,0 +1,9 @@
+.product-item {
+    border-width: 1px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: black;
+    margin-bottom: 8px;
+    padding: 16px;
+    display: flex;
+}
