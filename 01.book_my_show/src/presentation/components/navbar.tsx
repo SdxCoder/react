@@ -1,10 +1,10 @@
-import { FaPlus, FaSearch } from "react-icons/fa";
 
+import { FaPlus, FaSearch } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 
 function NavBar() {
     return (
-        <nav className="flex justify-between bg-c-midnight-zone h-14 w-full px-[10%]">
+        <nav className="flex justify-between bg-c-midnight-zone h-14 w-full px-[10%]" >
 
             <ul className="flex gap-8 items-center h-full text-white font-medium">
                 <a href="/" className="h-full w-36"><img src="/src/shared/assets/tmdb.png" alt="logo" /></a>
@@ -23,7 +23,7 @@ function NavBar() {
     );
 }
 
-function MenuItemWithSubmenu({ name, submenuItems }) {
+function MenuItemWithSubmenu({ name, submenuItems }: { name: string, submenuItems: string[] }) {
     return (
         <li className="relative group">
             <a href="/">{name}</a>
@@ -33,7 +33,6 @@ function MenuItemWithSubmenu({ name, submenuItems }) {
                         <li className="hover:bg-gray-200 px-4 py-1"><a href="/">{item}</a></li>
                     ))
                 }
-
             </ul>
         </li>
     );

@@ -1,6 +1,7 @@
-import App from "../app.jsx";
+import { RouteObject } from "react-router-dom";
+import App from "../app.js";
 
-const routes = [
+const routes: RouteObject[] = [
     {
         path: "/",
         element: <App />,
