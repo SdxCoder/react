@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    .wrapper-container {
+        @apply max-w-max_width m-auto;
+    }
+
+    .wrapper-container-lg {
+        @apply max-w-[85rem] m-auto;
+    }
+}

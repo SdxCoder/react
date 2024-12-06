@@ -1,36 +1,59 @@
 
 import { FaPlus, FaSearch } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
+import { Link } from "react-router-dom";
+
+interface SubmenuRoute {
+    name: string,
+    path: string,
+}
+
 
 function NavBar() {
     return (
-        <nav className="flex justify-between bg-c-midnight-zone h-14 w-full px-[10%]" >
-
-            <ul className="flex gap-8 items-center h-full text-white font-medium">
-                <a href="/" className="h-full w-36"><img src="/src/shared/assets/tmdb.png" alt="logo" /></a>
-                <MenuItemWithSubmenu name='Movies' submenuItems={['Popular', 'Now Playing', 'Upcoming', 'Top Rated']} />
-                <MenuItemWithSubmenu name='TV Shows' submenuItems={['Popular', 'Airing Today', 'On TV', 'Top Rated']} />
-                <MenuItemWithSubmenu name='People' submenuItems={['Popular People']} />
-            </ul>
-            <ul className="flex gap-8 items-center h-full text-white">
-                <FaPlus />
-                <GrLanguage />
-                <li><a href="/">Login</a></li>
-                <li><a href="/">Join TMBD</a></li>
-                <FaSearch className="text-c-cyan" />
-            </ul>
-        </nav>
+        <div className="bg-c-midnight-zone">
+            <nav className="wrapper-container flex justify-between bg-c-midnight-zone h-14" >
+                <ul className="flex gap-8 items-center h-full text-white font-medium">
+                    <Link to="/" className="h-full w-36"><img src="/src/shared/assets/tmdb.png" alt="logo" /></Link>
+                    <MenuItemWithSubmenu name='Movies' submenuItems={[{
+                        name: 'Popular',
+                        path: 'movie',
+                    },
+                    {
+                        name: 'Now Playing',
+                        path: 'movie/now-playing',
+                    },
+                    {
+                        name: 'Upcoming',
+                        path: 'movie/upcoming',
+                    }, {
+                        name: 'Top Rated',
+                        path: 'movie/top-rated',
+                    }
+                    ]} />
+                    <MenuItemWithSubmenu name='TV Shows' submenuItems={[{ name: 'Popular', path: '#' }, { name: 'Airing Today', path: '#' }, { name: 'On TV', path: '#' }, { name: 'Top Rated', path: '#' }]} />
+                    <MenuItemWithSubmenu name='People' submenuItems={[{ name: 'Popular People', path: '#' }]} />
+                </ul>
+                <ul className="flex gap-8 items-center h-full text-white">
+                    <FaPlus />
+                    <GrLanguage />
+                    <li><a href="/">Login</a></li>
+                    <li><a href="/">Join TMBD</a></li>
+                    <FaSearch className="text-c-light-blue" />
+                </ul>
+            </nav>
+        </div>
     );
 }
 
-function MenuItemWithSubmenu({ name, submenuItems }: { name: string, submenuItems: string[] }) {
+function MenuItemWithSubmenu({ name, submenuItems }: { name: string, submenuItems: SubmenuRoute[] }) {
     return (
-        <li className="relative group">
-            <a href="/">{name}</a>
+        <li className="relative group text-sm">
+            {name}
             <ul className="absolute left-0 mt-0 w-36 py-2 bg-white text-black text-sm font-light border rounded-lg shadow-sm group-hover:block hidden">
                 {
                     submenuItems.map((item) => (
-                        <li className="hover:bg-gray-200 px-4 py-1"><a href="/">{item}</a></li>
+                        <li key={item.name} className="hover:bg-gray-200 px-4 py-1"><Link to={item.path}>{item.name}</Link></li>
                     ))
                 }
             </ul>
